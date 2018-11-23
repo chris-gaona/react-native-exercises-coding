@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { SafeAreaView, FlatList, Text, StatusBar, ActivityIndicator, StyleSheet, View } from 'react-native';
+import { List, ListItem } from 'react-native-elements';
 
 const styles = StyleSheet.create({
   container: {
@@ -34,10 +35,11 @@ class Challenge3 extends Component {
 
   Person({ name, birth_year }) {
     return (
-      <View style={styles.person}>
-        <Text style={styles.name}>{ name }</Text>
-        <Text>Birth Year: { birth_year }</Text>
-      </View>
+      <ListItem
+        title={name}
+        subtitle={`Birth Year: ${birth_year}`}
+        hideChevron
+      />
     )
   }
 
@@ -56,13 +58,14 @@ class Challenge3 extends Component {
             <ActivityIndicator size="large" color="gray" style={{flex: 1}} />
           ) :
           (
-            <FlatList
-              data={people}
-              renderItem={({ item }) => this.Person(item)}
-              keyExtractor={(item) => item.name}
-              ItemSeparatorComponent={this.Separator}
-              style={{borderTopColor: 'gray', borderTopWidth: 1, marginTop: 15}}
-            />
+            <List containerStyle={{ flex: 1 }}>
+              <FlatList
+                data={people}
+                renderItem={({ item }) => this.Person(item)}
+                keyExtractor={(item) => item.name}
+                ItemSeparatorComponent={this.Separator}
+              />
+            </List>
           )
         }
       </SafeAreaView>
