@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, FlatList, SafeAreaView, StatusBar } from 'react-native';
+import { View, FlatList, SafeAreaView, StatusBar, ActivityIndicator } from 'react-native';
 import { List, ListItem } from 'react-native-elements';
 
 import { getPeople } from './api';
@@ -29,13 +29,20 @@ class Challenge3 extends Component {
     return (
       <SafeAreaView style={{ flex: 1 }}>
         <StatusBar barStyle="dark-content" />
-        <List containerStyle={{ flex: 1 }}>
-          <FlatList
-            data={this.state.people}
-            renderItem={this.renderItem}
-            keyExtractor={item => item.created}
-          />
-        </List>
+        { !this.state.people.length ?
+          (
+            <ActivityIndicator size="large" color="gray" style={{flex: 1}} />
+          ) :
+          (
+            <List containerStyle={{ flex: 1 }}>
+              <FlatList
+                data={this.state.people}
+                renderItem={this.renderItem}
+                keyExtractor={item => item.created}
+              />
+            </List>
+          )
+        }
       </SafeAreaView>
     );
   }
