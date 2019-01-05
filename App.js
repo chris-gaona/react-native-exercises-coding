@@ -6,7 +6,7 @@
 // import App from './Exercise6';
 // import App from './Exercise7';
 // import App from './Exercise8';
-import App from './Exercise9';
-// import App from './Exercise10';
+// import App from './Exercise9';
+import App from './Exercise10';
 
 export default App;
